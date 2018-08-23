@@ -1,6 +1,6 @@
 //@ts-check
 
-const XKCDjs = require('../dist');
+const XKCDjs = require('../');
 const nock = require('nock');
 
 /** @type {XKCDjs.XKCDResult} */

@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "main": "dist/index.js",
-  "name": "xkcdjs",
+  "name": "@ffflorian/xkcdjs",
   "repository": "https://github.com/ffflorian/xkcdjs.git",
   "scripts": {
     "build": "tsc",

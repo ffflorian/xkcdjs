@@ -5,7 +5,7 @@ A simple [XKCD](https://xkcd.com) API.
 ## Usage
 
 ```ts
-import {XKCD} from 'xkcdjs';
+import {XKCD} from '@ffflorian/xkcdjs';
 
 const xkcdJS = new XKCD();
 
