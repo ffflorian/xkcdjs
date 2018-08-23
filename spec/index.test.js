@@ -36,18 +36,18 @@ const responseDataLatest = {
 
 describe('XKCD', () => {
   /** @type {XKCDjs.XKCD} */
-  let xkcd;
+  let xkcdJS;
 
   beforeEach(() => {
-    xkcd = new XKCDjs.XKCD();
+    xkcdJS = new XKCDjs.XKCD();
 
-    nock(xkcd.requestService.baseUrl)
-      .get(new RegExp(`/[0-9]+/${xkcd.requestService.jsonInfoPath}`))
+    nock(xkcdJS.requestService.baseUrl)
+      .get(new RegExp(`/[0-9]+/${xkcdJS.requestService.jsonInfoPath}`))
       .reply(200, responseDataFirst)
       .persist();
 
-    nock(xkcd.requestService.baseUrl)
-      .get(new RegExp(`/${xkcd.requestService.jsonInfoPath}`))
+    nock(xkcdJS.requestService.baseUrl)
+      .get(new RegExp(`/${xkcdJS.requestService.jsonInfoPath}`))
       .reply(200, responseDataLatest)
       .persist();
 
@@ -59,30 +59,30 @@ describe('XKCD', () => {
 
   it('gets the latest comic', async () => {
     /** @type {XKCDjs.XKCDResult} */
-    const latest = await xkcd.getLatest();
+    const latest = await xkcdJS.getLatest();
 
     expect(latest.alt).toBe(responseDataLatest.alt);
   });
 
   it('gets a random comic', async () => {
     /** @type {XKCDjs.XKCDResult} */
-    const latest = await xkcd.getRandom();
+    const latest = await xkcdJS.getRandom();
 
     expect(latest.alt).toBe(responseDataFirst.alt);
   });
 
   it('gets a comic by id', async () => {
     /** @type {XKCDjs.XKCDResult} */
-    const latest = await xkcd.getByIndex(1);
+    const latest = await xkcdJS.getByIndex(1);
 
     expect(latest.alt).toBe(responseDataFirst.alt);
   });
 
   it('sets the base URL', async () => {
-    xkcd.setBaseUrl('https://example.com');
+    xkcdJS.setBaseUrl('https://example.com');
 
     try {
-      await xkcd.getByIndex(1);
+      await xkcdJS.getByIndex(1);
       fail('Did not throw error');
     } catch (error) {
       expect(error.message).toBe('Request failed with status code 404');
