@@ -41,14 +41,19 @@ describe('XKCD', () => {
   beforeEach(() => {
     xkcdJS = new XKCDjs.XKCD();
 
-    nock(xkcdJS.requestService.baseUrl)
-      .get(new RegExp(`/[0-9]+/${xkcdJS.requestService.jsonInfoPath}`))
+    nock('https://xkcd.com')
+      .get(/\/[0-9]+\/info\.0\.json/)
       .reply(200, responseDataFirst)
       .persist();
 
-    nock(xkcdJS.requestService.baseUrl)
-      .get(new RegExp(`/${xkcdJS.requestService.jsonInfoPath}`))
+    nock('https://xkcd.com')
+      .get('/info.0.json')
       .reply(200, responseDataLatest)
+      .persist();
+
+    nock('https://imgs.xkcd.com/')
+      .get(/.*/)
+      .reply(200, Buffer.from([]))
       .persist();
 
     nock('https://example.com')
@@ -58,24 +63,27 @@ describe('XKCD', () => {
   });
 
   it('gets the latest comic', async () => {
-    /** @type {XKCDjs.XKCDResult} */
     const latest = await xkcdJS.getLatest();
 
     expect(latest.alt).toBe(responseDataLatest.alt);
   });
 
   it('gets a random comic', async () => {
-    /** @type {XKCDjs.XKCDResult} */
-    const latest = await xkcdJS.getRandom();
+    const random = await xkcdJS.getRandom();
 
-    expect(latest.alt).toBe(responseDataFirst.alt);
+    expect(random.alt).toBe(responseDataFirst.alt);
   });
 
   it('gets a comic by id', async () => {
-    /** @type {XKCDjs.XKCDResult} */
-    const latest = await xkcdJS.getByIndex(1);
+    const byIndex = await xkcdJS.getByIndex(1);
 
-    expect(latest.alt).toBe(responseDataFirst.alt);
+    expect(byIndex.alt).toBe(responseDataFirst.alt);
+  });
+
+  it('gets the image data', async () => {
+    const latestWithData = await xkcdJS.getLatest({withData: true});
+
+    expect(latestWithData.data).toEqual(jasmine.any(Buffer));
   });
 
   it('sets the base URL', async () => {

@@ -34,6 +34,29 @@ xkcdJS.getById(2036).then(result => {
 xkcdJS.setBaseUrl('https://example.com');
 ```
 
+### With image data
+```ts
+import {XKCD} from '@ffflorian/xkcdjs';
+
+const xkcdJS = new XKCD();
+
+xkcdJS.getLatest({withData: true}).then(result => {
+  /*
+  XKCDResult {
+    data: <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 ...,
+    alt: "If you study ...",
+    day: '22',
+    img: 'https://imgs.xkcd.com/...',
+    link: '',
+    month: '8',
+    news: '',
+    ...
+  }
+  */
+});
+```
+
+
 ## Build and test
 
 ```

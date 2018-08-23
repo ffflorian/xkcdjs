@@ -1,6 +1,7 @@
 {
   "author": "Florian Keller <github@floriankeller.de>",
   "dependencies": {
+    "@types/node": "10.7.1",
     "axios": "0.18.0"
   },
   "devDependencies": {

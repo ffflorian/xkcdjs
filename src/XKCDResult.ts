@@ -11,3 +11,7 @@ export interface XKCDResult {
   transcript: string;
   year: string;
 }
+
+export interface XKCDResultWithData extends XKCDResult {
+  data: Buffer;
+}
