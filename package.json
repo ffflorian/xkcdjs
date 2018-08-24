@@ -8,6 +8,7 @@
     "axios": "0.18.0",
     "commander": "2.17.1"
   },
+  "description": "A simple xkcd API with a CLI.",
   "devDependencies": {
     "jasmine": "3.2.0",
     "nock": "9.6.1",
@@ -17,6 +18,11 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "cli",
+    "typescript",
+    "xkcd"
   ],
   "license": "MIT",
   "main": "dist/index.js",

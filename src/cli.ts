@@ -24,7 +24,7 @@ async function save(filePath: string, imageResult: XKCDResultWithData) {
   let extension = data.mimeType ? data.mimeType.replace('image/', '') : 'png';
 
   const resolvedFilePath = path.resolve(filePath, `xkcd #${num} - ${safe_title}.${extension}`);
-  await promisify(fs.writeFile)(resolvedFilePath, data);
+  await promisify(fs.writeFile)(resolvedFilePath, data.data);
   console.error(`Saved image to ${resolvedFilePath}.`);
 };
 

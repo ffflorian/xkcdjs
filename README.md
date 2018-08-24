@@ -3,7 +3,7 @@
 A simple [xkcd](https://xkcd.com) API with a CLI.
 
 ## CLI usage
-To use `xkcdjs` globally, run `yarn global add xkcdjs` or `npm i -g xkcdjs`.
+To use `xkcdjs` globally, run `yarn global add @ffflorian/xkcdjs` or `npm i -g @ffflorian/xkcdjs`.
 ```
 Usage: xkcdjs [options] [command]
 
