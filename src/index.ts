@@ -1,11 +1,13 @@
 import {XKCDResult, XKCDResultWithData} from './XKCDResult';
 import {RequestService} from './RequestService';
 
-interface RequestOptions {
+export interface RequestOptions {
   withData?: boolean;
 }
 
-class XKCD {
+export * from './XKCDResult';
+
+export class XKCD {
   private readonly lowestIndex = 1;
   private readonly requestService: RequestService;
 
@@ -72,5 +74,3 @@ class XKCD {
     this.requestService.setBaseUrl(url);
   }
 }
-
-export {XKCD, XKCDResult, XKCDResultWithData};
