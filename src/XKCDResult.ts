@@ -1,3 +1,8 @@
+export interface ImageData {
+  data: Buffer;
+  mimeType?: string;
+}
+
 export interface XKCDResult {
   alt: string;
   day: string;
@@ -13,5 +18,5 @@ export interface XKCDResult {
 }
 
 export interface XKCDResultWithData extends XKCDResult {
-  data: Buffer;
+  data: ImageData;
 }

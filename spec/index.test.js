@@ -53,7 +53,9 @@ describe('XKCD', () => {
 
     nock('https://imgs.xkcd.com/')
       .get(/.*/)
-      .reply(200, Buffer.from([]))
+      .reply(200, Buffer.from([]), {
+        'content-type': 'image/png',
+      })
       .persist();
 
     nock('https://example.com')
@@ -83,7 +85,9 @@ describe('XKCD', () => {
   it('gets the image data', async () => {
     const latestWithData = await xkcdJS.getLatest({withData: true});
 
-    expect(latestWithData.data).toEqual(jasmine.any(Buffer));
+    expect(latestWithData.data).toEqual(jasmine.objectContaining({
+      data: jasmine.any(Buffer),
+    }));
   });
 
   it('sets the base URL', async () => {

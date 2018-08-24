@@ -1,61 +1,97 @@
 # xkcdjs [![Build Status](https://api.travis-ci.org/ffflorian/xkcdjs.svg?branch=master)](https://travis-ci.org/ffflorian/xkcdjs/) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ffflorian/xkcdjs)](https://dependabot.com)
 
-A simple [XKCD](https://xkcd.com) API.
+A simple [xkcd](https://xkcd.com) API with a CLI.
 
-## Usage
+## CLI usage
+To use `xkcdjs` globally, run `yarn global add xkcdjs` or `npm i -g xkcdjs`.
+```
+Usage: xkcdjs [options] [command]
+
+  Options:
+
+    -v, --version       output the version number
+    -o, --output <dir>  Specify the output directory (default: current directory)
+    -h, --help          output usage information
+
+  Commands:
+
+    latest              Save the latest comic
+    random              Save a random comic
+    number <index>      Save comic by index number
+```
+
+## TypeScript example usage
 
 ```ts
 import {XKCD} from '@ffflorian/xkcdjs';
 
-const xkcdJS = new XKCD();
+const xkcd = new XKCD();
 
-xkcdJS.getLatest().then(result => {
-  /*
-  XKCDResult {
-    alt: "If you study ...",
-    day: '22',
-    img: 'https://imgs.xkcd.com/...',
-    link: '',
-    month: '8',
-    news: '',
-    ...
-  }
-  */
+xkcd.getLatest().then(result => {
+  // XKCDResult { ... }
 });
 
-xkcdJS.getRandom().then(result => {
+xkcd.getRandom().then(result => {
   // XKCDResult
 });
 
-xkcdJS.getById(2036).then(result => {
+xkcd.getById(2036).then(result => {
   // XKCDResult
 });
 
-xkcdJS.setBaseUrl('https://example.com');
+xkcd.getLatest({withData: true}).then(result => {
+  // XKCDResultWithData
+});
+
+xkcd.getRandom({withData: true}).then(result => {
+  // XKCDResultWithData
+});
+
+xkcd.getById(2036, {withData: true}).then(result => {
+  // XKCDResultWithData
+});
+
+// optional:
+xkcd.setBaseUrl('https://example.com');
 ```
 
-### With image data
+## Functions
 ```ts
-import {XKCD} from '@ffflorian/xkcdjs';
-
-const xkcdJS = new XKCD();
-
-xkcdJS.getLatest({withData: true}).then(result => {
-  /*
-  XKCDResult {
-    data: <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 ...,
-    alt: "If you study ...",
-    day: '22',
-    img: 'https://imgs.xkcd.com/...',
-    link: '',
-    month: '8',
-    news: '',
-    ...
-  }
-  */
-});
+getRandom(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
+getLatest(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
+getByIndex(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
+setBaseUrl(url: string): void;
 ```
 
+## Interfaces
+```ts
+interface RequestOptions {
+  withData?: boolean;
+}
+
+interface ImageData {
+  data: Buffer;
+  mimeType?: string;
+}
+
+interface XKCDResult {
+  alt: string;
+  day: string;
+  img: string;
+  link: string;
+  month: string;
+  news: string;
+  num: number;
+  safe_title: string;
+  title: string;
+  transcript: string;
+  year: string;
+}
+
+interface XKCDResultWithData extends XKCDResult {
+  data: ImageData;
+}
+```
 
 ## Build and test
 
