@@ -2,7 +2,6 @@ import axios from 'axios';
 import {URL} from 'url';
 
 import {XKCDResult, ImageData} from './XKCDResult';
-import {APIException} from './APIException';
 
 export class RequestService {
   private static readonly JSON_INFO_FILE = 'info.0.json';
@@ -17,7 +16,7 @@ export class RequestService {
     } catch (error) {
       const {status: statusCode = 0, statusText = ''} = error.response || {};
       if (statusCode && statusText) {
-        throw new APIException(`Request failed with status code ${statusCode}: ${statusText}.`);
+        throw new Error(`Request failed with status code ${statusCode}: ${statusText}.`);
       }
       throw error;
     }
@@ -48,7 +47,7 @@ export class RequestService {
     } catch (error) {
       const {status: statusCode = 0, statusText = ''} = error.response || {};
       if (statusCode && statusText) {
-        throw new APIException(`Request failed with status code ${statusCode}: ${statusText}.`);
+        throw new Error(`Request failed with status code ${statusCode}: ${statusText}.`);
       }
       throw error;
     }
