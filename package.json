@@ -14,6 +14,7 @@
     "nock": "9.6.1",
     "prettier": "1.14.2",
     "rimraf": "2.6.2",
+    "typedoc": "0.12.0",
     "typescript": "3.0.1"
   },
   "files": [
@@ -33,6 +34,7 @@
     "build": "tsc",
     "clear": "rimraf dist",
     "dist": "yarn clear && yarn build",
+    "docs": "typedoc --out docs/ --mode modules --excludePrivate --exclude \"**/*(cli|index|RequestService).ts\"",
     "prettier": "prettier --write \"src/*.ts\" \"spec/*.js\"",
     "test": "yarn dist && jasmine"
   },
