@@ -1,6 +1,6 @@
 # xkcdjs [![Build Status](https://api.travis-ci.org/ffflorian/xkcdjs.svg?branch=master)](https://travis-ci.org/ffflorian/xkcdjs/) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ffflorian/xkcdjs)](https://dependabot.com)
 
-A simple [xkcd](https://xkcd.com) API with a CLI.
+An [xkcd](https://xkcd.com) API client with a CLI.
 
 ## Usage
 
