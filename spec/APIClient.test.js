@@ -1,9 +1,9 @@
 //@ts-check
 
-const XKCDjs = require('../');
+const XKCDJS = require('../');
 const nock = require('nock');
 
-/** @type {XKCDjs.XKCDResult} */
+/** @type {XKCDJS.XKCDResult} */
 const responseDataFirst = {
   alt: "Don't we all.",
   day: '1',
@@ -19,7 +19,7 @@ const responseDataFirst = {
   year: '2006',
 };
 
-/** @type {XKCDjs.XKCDResult} */
+/** @type {XKCDJS.XKCDResult} */
 const responseDataLatest = {
   alt: "If you study graphs in which edges can link more than two nodes, you're more properly called a hyperedgelord.",
   day: '22',
@@ -35,11 +35,11 @@ const responseDataLatest = {
 };
 
 describe('XKCD', () => {
-  /** @type {XKCDjs.XKCD} */
+  /** @type {XKCDJS.XKCD} */
   let xkcdJS;
 
   beforeEach(() => {
-    xkcdJS = new XKCDjs.XKCD();
+    xkcdJS = new XKCDJS.XKCD();
 
     nock('https://xkcd.com')
       .get(/\/[0-9]+\/info\.0\.json/)
@@ -93,7 +93,7 @@ describe('XKCD', () => {
   });
 
   it('sets the base URL', async () => {
-    xkcdJS.setBaseUrl('https://example.com');
+    xkcdJS.setApiUrl(new URL('https://example.com'));
 
     try {
       await xkcdJS.getByIndex(1);

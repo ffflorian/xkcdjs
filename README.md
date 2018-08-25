@@ -56,49 +56,6 @@ xkcd.getRandom({withData: true}).then(result => {
 xkcd.getById(2036, {withData: true}).then(result => {
   // XKCDResultWithData
 });
-
-// optional:
-xkcd.setBaseUrl('https://example.com');
-```
-
-#### Functions
-
-```ts
-getRandom(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
-getLatest(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
-getByIndex(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
-setBaseUrl(url: string): void;
-```
-
-#### Interfaces
-
-```ts
-interface RequestOptions {
-  withData?: boolean;
-}
-
-interface ImageData {
-  data: Buffer;
-  mimeType?: string;
-}
-
-interface XKCDResult {
-  alt: string;
-  day: string;
-  img: string;
-  link: string;
-  month: string;
-  news: string;
-  num: number;
-  safe_title: string;
-  title: string;
-  transcript: string;
-  year: string;
-}
-
-interface XKCDResultWithData extends XKCDResult {
-  data: ImageData;
-}
 ```
 
 ## Build and test

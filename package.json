@@ -32,9 +32,9 @@
   "repository": "https://github.com/ffflorian/xkcdjs.git",
   "scripts": {
     "build": "tsc",
-    "clear": "rimraf dist",
+    "clear": "rimraf dist docs",
     "dist": "yarn clear && yarn build",
-    "docs": "typedoc --out docs/ --mode modules --excludePrivate --exclude \"**/*(cli|index|RequestService).ts\"",
+    "docs": "typedoc --out docs/ --mode modules --excludePrivate --excludeExternals --exclude \"**/*(cli|index|RequestService).ts\"",
     "prettier": "prettier --write \"src/*.ts\" \"spec/*.js\"",
     "test": "yarn dist && jasmine"
   },

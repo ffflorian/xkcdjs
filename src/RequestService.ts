@@ -5,7 +5,7 @@ import {XKCDResult, ImageData} from './XKCDResult';
 
 export class RequestService {
   private static readonly JSON_INFO_FILE = 'info.0.json';
-  private baseUrl = new URL('https://xkcd.com');
+  private apiUrl = new URL('https://xkcd.com');
 
   constructor() {}
 
@@ -23,13 +23,13 @@ export class RequestService {
   }
 
   async getLatest(): Promise<XKCDResult> {
-    const parsedUrl = new URL(RequestService.JSON_INFO_FILE, this.baseUrl);
-    return this.request(parsedUrl);
+    const url = new URL(RequestService.JSON_INFO_FILE, this.apiUrl);
+    return this.request(url);
   }
 
   async getByIndex(index: number): Promise<XKCDResult> {
-    const parsedURL = new URL(`${index}/${RequestService.JSON_INFO_FILE}`, this.baseUrl);
-    return this.request(parsedURL);
+    const url = new URL(`${index}/${RequestService.JSON_INFO_FILE}`, this.apiUrl);
+    return this.request(url);
   }
 
   async getImage(imageUrl: string): Promise<ImageData> {
@@ -53,7 +53,7 @@ export class RequestService {
     }
   }
 
-  setBaseUrl(newUrl: string): void {
-    this.baseUrl = new URL(newUrl);
+  setApiUrl(newUrl: URL): void {
+    this.apiUrl = newUrl;
   }
 }

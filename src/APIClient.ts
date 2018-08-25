@@ -1,5 +1,6 @@
 import {XKCDResult, XKCDResultWithData} from './XKCDResult';
 import {RequestService} from './RequestService';
+import {URL} from 'url';
 
 export interface RequestOptions {
   withData?: boolean;
@@ -13,9 +14,12 @@ export class XKCD {
     this.requestService = new RequestService();
   }
 
-  async getRandom(options?: {withData?: false}): Promise<XKCDResult>;
-  async getRandom(options: {withData: true}): Promise<XKCDResultWithData>;
-  async getRandom(options: RequestOptions = {}): Promise<XKCDResult | XKCDResultWithData> {
+  /**
+   * Get a random comic.
+   * @param options Request options
+   */
+  public async getRandom(options: {withData: true}): Promise<XKCDResultWithData>;
+  public async getRandom(options: RequestOptions = {}): Promise<XKCDResult | XKCDResultWithData> {
     const latest = await this.requestService.getLatest();
     const randomIndex = Math.floor(Math.random() * (latest.num - this.lowestIndex + 1)) + this.lowestIndex;
 
@@ -32,9 +36,12 @@ export class XKCD {
     return metaData;
   }
 
-  async getLatest(options?: {withData?: false}): Promise<XKCDResult>;
-  async getLatest(options: {withData: true}): Promise<XKCDResultWithData>;
-  async getLatest(options: RequestOptions = {}): Promise<XKCDResult | XKCDResultWithData> {
+  /**
+   * Get the latest comic.
+   * @param options Request options
+   */
+  public async getLatest(options: {withData: true}): Promise<XKCDResultWithData>;
+  public async getLatest(options: RequestOptions = {}): Promise<XKCDResult | XKCDResultWithData> {
     const metaData = await this.requestService.getLatest();
 
     if (options.withData === true) {
@@ -48,9 +55,13 @@ export class XKCD {
     return metaData;
   }
 
-  async getByIndex(index: number, options?: {withData?: false}): Promise<XKCDResult>;
-  async getByIndex(index: number, options: {withData: true}): Promise<XKCDResultWithData>;
-  async getByIndex(index: number, options: RequestOptions = {}): Promise<XKCDResultWithData | XKCDResult> {
+  /**
+   * Get a comic by index.
+   * @param index Index number
+   * @param options Request options
+   */
+  public async getByIndex(index: number, options: {withData: true}): Promise<XKCDResultWithData>;
+  public async getByIndex(index: number, options: RequestOptions = {}): Promise<XKCDResultWithData | XKCDResult> {
     if (index < this.lowestIndex) {
       throw new Error(`Index is lower than the lowest index of ${this.lowestIndex}.`);
     }
@@ -68,7 +79,11 @@ export class XKCD {
     return metaData;
   }
 
-  setBaseUrl(url: string): void {
-    this.requestService.setBaseUrl(url);
+  /**
+   * Set a new API URL.
+   * @param url The new API URL.
+   */
+  public setApiUrl(newUrl: URL): void {
+    this.requestService.setApiUrl(newUrl);
   }
 }
