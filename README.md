@@ -3,7 +3,9 @@
 A simple [xkcd](https://xkcd.com) API with a CLI.
 
 ## CLI usage
+
 To use `xkcdjs` globally, run `yarn global add @ffflorian/xkcdjs` or `npm i -g @ffflorian/xkcdjs`.
+
 ```
 Usage: xkcdjs [options] [command]
 
@@ -56,6 +58,7 @@ xkcd.setBaseUrl('https://example.com');
 ```
 
 ## Functions
+
 ```ts
 getRandom(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
 getLatest(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
@@ -64,6 +67,7 @@ setBaseUrl(url: string): void;
 ```
 
 ## Interfaces
+
 ```ts
 interface RequestOptions {
   withData?: boolean;

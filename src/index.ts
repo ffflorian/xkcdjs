@@ -28,7 +28,7 @@ export class XKCD {
       return {
         ...metaData,
         data: imageData,
-      }
+      };
     }
 
     return metaData;
@@ -44,7 +44,7 @@ export class XKCD {
       return {
         ...metaData,
         data: imageData,
-      }
+      };
     }
 
     return metaData;
@@ -64,7 +64,7 @@ export class XKCD {
       return {
         ...metaData,
         data: imageData,
-      }
+      };
     }
 
     return metaData;

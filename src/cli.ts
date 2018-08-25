@@ -16,7 +16,7 @@ async function init(dir: string = '.'): Promise<[string, XKCD]> {
   } else {
     throw new Error(`The specified path does not exist or is not writable.`);
   }
-};
+}
 
 async function save(filePath: string, imageResult: XKCDResultWithData) {
   const {data, num, safe_title} = imageResult;
@@ -26,13 +26,9 @@ async function save(filePath: string, imageResult: XKCDResultWithData) {
   const resolvedFilePath = path.resolve(filePath, `xkcd #${num} - ${safe_title}.${extension}`);
   await promisify(fs.writeFile)(resolvedFilePath, data.data);
   console.error(`Saved image to ${resolvedFilePath}.`);
-};
+}
 
-const {
-  description,
-  name,
-  version,
-}: {description: string; name: string; version: string} = require('../package.json');
+const {description, name, version}: {description: string; name: string; version: string} = require('../package.json');
 
 program.on('command:*', () => program.help());
 

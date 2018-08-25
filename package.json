@@ -20,6 +20,7 @@
     "dist"
   ],
   "keywords": [
+    "api",
     "cli",
     "typescript",
     "xkcd"

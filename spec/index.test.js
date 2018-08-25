@@ -85,9 +85,11 @@ describe('XKCD', () => {
   it('gets the image data', async () => {
     const latestWithData = await xkcdJS.getLatest({withData: true});
 
-    expect(latestWithData.data).toEqual(jasmine.objectContaining({
-      data: jasmine.any(Buffer),
-    }));
+    expect(latestWithData.data).toEqual(
+      jasmine.objectContaining({
+        data: jasmine.any(Buffer),
+      })
+    );
   });
 
   it('sets the base URL', async () => {

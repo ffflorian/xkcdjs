@@ -44,7 +44,7 @@ export class RequestService {
       return {
         data: response.data,
         mimeType: contentType ? String(contentType) : undefined,
-      }
+      };
     } catch (error) {
       const {status: statusCode = 0, statusText = ''} = error.response || {};
       if (statusCode && statusText) {
