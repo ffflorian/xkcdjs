@@ -2,7 +2,9 @@
 
 A simple [xkcd](https://xkcd.com) API with a CLI.
 
-## CLI usage
+## Usage
+
+### CLI
 
 To use `xkcdjs` globally, run `yarn global add @ffflorian/xkcdjs` or `npm i -g @ffflorian/xkcdjs`.
 
@@ -22,7 +24,9 @@ Usage: xkcdjs [options] [command]
     number <index>      Save comic by index number
 ```
 
-## TypeScript example usage
+### TypeScript
+
+#### Example
 
 ```ts
 import {XKCD} from '@ffflorian/xkcdjs';
@@ -57,7 +61,7 @@ xkcd.getById(2036, {withData: true}).then(result => {
 xkcd.setBaseUrl('https://example.com');
 ```
 
-## Functions
+#### Functions
 
 ```ts
 getRandom(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
@@ -66,7 +70,7 @@ getByIndex(options?: RequestOptions): Promise<XKCDResult | XKCDResultWithData>;
 setBaseUrl(url: string): void;
 ```
 
-## Interfaces
+#### Interfaces
 
 ```ts
 interface RequestOptions {
