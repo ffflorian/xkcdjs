@@ -26,6 +26,8 @@ Usage: xkcdjs [options] [command]
 
 ### TypeScript
 
+A complete documentation is available at https://ffflorian.github.io/xkcdjs/.
+
 #### Example
 
 ```ts
