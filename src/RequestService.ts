@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {URL} from 'url';
 
-import {XKCDResult, ImageData} from './XKCDResult';
+import {XKCDResult, ImageData} from './Interfaces';
 
 export class RequestService {
   private static readonly JSON_INFO_FILE = 'info.0.json';
@@ -9,10 +9,14 @@ export class RequestService {
 
   constructor() {}
 
-  private async request(url: URL): Promise<XKCDResult> {
+  private async request<T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    config = {
+      method: 'get',
+      ...config,
+    };
     try {
-      const response = await axios.get<XKCDResult>(url.toString());
-      return response.data;
+      const response = await axios.request<T>(config);
+      return response;
     } catch (error) {
       const {status: statusCode = 0, statusText = ''} = error.response || {};
       if (statusCode && statusText) {
@@ -23,34 +27,34 @@ export class RequestService {
   }
 
   async getLatest(): Promise<XKCDResult> {
-    const url = new URL(RequestService.JSON_INFO_FILE, this.apiUrl);
-    return this.request(url);
+    const url = new URL(RequestService.JSON_INFO_FILE, this.apiUrl).href;
+    const {data} = await this.request<XKCDResult>({
+      url: url,
+    });
+    return data;
   }
 
   async getByIndex(index: number): Promise<XKCDResult> {
-    const url = new URL(`${index}/${RequestService.JSON_INFO_FILE}`, this.apiUrl);
-    return this.request(url);
+    const url = new URL(`${index}/${RequestService.JSON_INFO_FILE}`, this.apiUrl).href;
+    const {data} = await this.request<XKCDResult>({
+      url: url,
+    });
+    return data;
   }
 
   async getImage(imageUrl: string): Promise<ImageData> {
-    try {
-      const response = await axios.get<Buffer>(imageUrl, {
-        responseType: 'arraybuffer',
-      });
+    const url = new URL(imageUrl).href;
+    const {data, headers} = await this.request<Buffer>({
+      responseType: 'arraybuffer',
+      url,
+    });
 
-      const contentType = response.headers['content-type'];
+    const contentType = headers['content-type'];
 
-      return {
-        data: response.data,
-        mimeType: contentType ? String(contentType) : undefined,
-      };
-    } catch (error) {
-      const {status: statusCode = 0, statusText = ''} = error.response || {};
-      if (statusCode && statusText) {
-        throw new Error(`Request failed with status code ${statusCode}: ${statusText}.`);
-      }
-      throw error;
-    }
+    return {
+      data,
+      mimeType: contentType ? String(contentType) : undefined,
+    };
   }
 
   setApiUrl(newUrl: URL): void {

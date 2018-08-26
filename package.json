@@ -36,7 +36,6 @@
     "build:docs": "typedoc --out docs/ --mode modules --excludePrivate --excludeExternals --exclude \"**/*(cli|index|RequestService).ts\"",
     "clear": "rimraf dist",
     "clear:docs": "rimraf docs",
-    "deploy:docs": "git subtree push --prefix docs origin gh-pages",
     "dist": "yarn clear && yarn build",
     "dist:docs": "yarn clear:docs && yarn build:docs && nodetouch docs/.nojekyll",
     "prettier": "prettier --write \"src/*.ts\" \"spec/*.js\"",

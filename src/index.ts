@@ -1,2 +1,2 @@
 export * from './APIClient';
-export * from './XKCDResult';
+export * from './Interfaces';

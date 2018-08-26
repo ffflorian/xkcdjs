@@ -3,6 +3,10 @@ export interface ImageData {
   mimeType?: string;
 }
 
+export interface RequestOptions {
+  withData?: boolean;
+}
+
 export interface XKCDResult {
   alt: string;
   day: string;

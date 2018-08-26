@@ -35,7 +35,6 @@ const responseDataLatest = {
 };
 
 describe('XKCD', () => {
-  /** @type {XKCDJS.XKCD} */
   let xkcdJS;
 
   beforeEach(() => {
