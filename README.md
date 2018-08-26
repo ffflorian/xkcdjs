@@ -28,6 +28,10 @@ Usage: xkcdjs [options] [command]
 
 A complete documentation is available at https://ffflorian.github.io/xkcdjs/.
 
+#### Installation
+
+Run `yarn add @ffflorian/xkcdjs` or `npm install @ffflorian/xkcdjs`.
+
 #### Example
 
 ```ts
