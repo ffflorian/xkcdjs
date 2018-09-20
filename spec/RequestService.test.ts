@@ -1,16 +1,14 @@
-//@ts-check
-
-const {RequestService} = require('../dist/RequestService');
+import {RequestService} from '../src/RequestService';
 
 describe('RequestService', () => {
-  let requestService;
+  let requestService: RequestService;
 
   beforeEach(() => {
     requestService = new RequestService();
   });
 
   it('requests image data', async () => {
-    spyOn(requestService, 'request').and.returnValue(
+    spyOn<any>(requestService, 'request').and.returnValue(
       Promise.resolve({
         headers: {
           'content-type': 'ArrayBuffer',
@@ -21,7 +19,7 @@ describe('RequestService', () => {
 
     await requestService.getImage('http://example.com');
 
-    expect(requestService.request).toHaveBeenCalledWith({
+    expect(requestService['request']).toHaveBeenCalledWith({
       responseType: 'arraybuffer',
       url: 'http://example.com/',
     });
@@ -29,7 +27,7 @@ describe('RequestService', () => {
 
   it('fails with invalid URLs', async () => {
     try {
-      await requestService.getImage(undefined);
+      await requestService.getImage('');
       fail('No error thrown')
     } catch(error) {
       expect(error.message).toContain('Invalid URL');

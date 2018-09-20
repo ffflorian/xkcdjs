@@ -1,10 +1,8 @@
-//@ts-check
+import * as XKCDJS from '../src';
+import * as nock from 'nock';
+import {URL} from 'url';
 
-const XKCDJS = require('../');
-const nock = require('nock');
-
-/** @type {XKCDJS.XKCDResult} */
-const responseDataFirst = {
+const responseDataFirst: XKCDJS.XKCDResult = {
   alt: "Don't we all.",
   day: '1',
   img: 'https://imgs.xkcd.com/comics/barrel_cropped_(1).jpg',
@@ -19,8 +17,7 @@ const responseDataFirst = {
   year: '2006',
 };
 
-/** @type {XKCDJS.XKCDResult} */
-const responseDataLatest = {
+const responseDataLatest: XKCDJS.XKCDResult = {
   alt: "If you study graphs in which edges can link more than two nodes, you're more properly called a hyperedgelord.",
   day: '22',
   img: 'https://imgs.xkcd.com/comics/edgelord.png',
@@ -35,7 +32,7 @@ const responseDataLatest = {
 };
 
 describe('XKCD', () => {
-  let xkcdJS;
+  let xkcdJS: XKCDJS.XKCD;
 
   beforeEach(() => {
     xkcdJS = new XKCDJS.XKCD();
@@ -85,7 +82,7 @@ describe('XKCD', () => {
     const latestWithData = await xkcdJS.getLatest({withData: true});
 
     expect(latestWithData.data).toEqual(
-      jasmine.objectContaining({
+      jasmine.objectContaining<any>({
         data: jasmine.any(Buffer),
       })
     );
