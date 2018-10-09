@@ -6,7 +6,7 @@
   "dependencies": {
     "@types/node": "10.11.2",
     "axios": "0.18.0",
-    "commander": "2.18.0"
+    "commander": "2.19.0"
   },
   "description": "An xkcd API client with a CLI.",
   "devDependencies": {
