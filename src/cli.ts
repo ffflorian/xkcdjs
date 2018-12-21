@@ -22,7 +22,7 @@ async function init(dir: string = '.'): Promise<[string, XKCD]> {
 async function save(filePath: string, imageResult: XKCDResultWithData) {
   const {data, num, safe_title} = imageResult;
 
-  let extension = data.mimeType ? data.mimeType.replace('image/', '') : 'png';
+  const extension = data.mimeType ? data.mimeType.replace('image/', '') : 'png';
 
   const resolvedFilePath = path.resolve(filePath, `xkcd #${num} - ${safe_title}.${extension}`);
   await promisify(fs.writeFile)(resolvedFilePath, data.data);

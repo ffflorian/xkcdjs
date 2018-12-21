@@ -1,6 +1,6 @@
+import {URL} from 'url';
 import {RequestOptions, XKCDResult, XKCDResultWithData} from './Interfaces';
 import {RequestService} from './RequestService';
-import {URL} from 'url';
 
 export class XKCD {
   private readonly lowestIndex = 1;

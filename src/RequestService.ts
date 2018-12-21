@@ -1,7 +1,7 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {URL} from 'url';
 
-import {XKCDResult, ImageData} from './Interfaces';
+import {ImageData, XKCDResult} from './Interfaces';
 
 export class RequestService {
   private static readonly JSON_INFO_FILE = 'info.0.json';
